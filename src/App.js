@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import TakeName from './components/TakeName';
+import TakeName from './components/take_name/TakeName';
 
 class App extends Component {
   render() {
