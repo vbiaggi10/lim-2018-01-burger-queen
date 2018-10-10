@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TakeOrder from '../take_order/TakeOrder';
-import {Input, Icon} from 'react-materialize';
+import { Container, Input, Icon } from 'react-materialize';
 
 class TakeName extends Component {
   constructor() {
@@ -12,20 +12,27 @@ class TakeName extends Component {
   }
 
   render() {
-    if(this.state.tookName){
-      return ( <TakeOrder name={this.state.name}/>)
-    }else {
+    if (this.state.tookName) {
       return (
-        <div className="row">
+        <Container>
+          <button className="btn waves-effect waves-light" type="submit" name="action" onClick={this.handleCancel.bind(this)}>Cancel
+              <Icon small right>close</Icon>
+          </button>
+          <TakeOrder name={this.state.name} />
+        </Container>
+      )
+    } else {
+      return (
+        <Container className="row">
           <form className="col s6" onSubmit={this.handleSubmit.bind(this)}>
             <Input s={12} onChange={this.handleChange.bind(this)} label="Name" />
             <button className="btn waves-effect waves-light" type="submit" name="action">Submit
               <Icon small right>send</Icon>
             </button>
           </form>
-        </div>
+        </Container>
       );
-    } 
+    }
   }
 
   handleChange(e) {
@@ -34,8 +41,11 @@ class TakeName extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({tookName: true})
-    // this.setState({name: ''})
+    this.setState({ tookName: true })
+  }
+
+  handleCancel(e) {
+    this.setState({ tookName: false })
   }
 
 }

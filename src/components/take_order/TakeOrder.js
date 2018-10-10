@@ -14,7 +14,9 @@ class TakeOrder extends Component {
             <Tab title="Lunch / Dinner" className="col s6"> <LunchDinner/> </Tab>
           </Tabs>
         </Container>
-        
+        <Container className="col s6">
+          <h3>Order</h3>
+        </Container>
       </div>
     );
   }

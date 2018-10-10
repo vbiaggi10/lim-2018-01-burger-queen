@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
-import {Tabs, Tab, Container} from 'react-materialize';
+import { Button } from 'react-materialize';
+import data from '../../data/menu.json';
 
 class Breakfast extends Component {
   render() {
     return (
       <div className="row">
-        <h3>Breakfast</h3>        
+        <div>{this.handleShowItems()}</div>
       </div>
     );
+  }
+
+  handleShowItems() {
+    return data.map((breakfast) => {
+      return (breakfast.breakfast).map((item, i) => {
+        return (
+          <Button key={i} waves='light'>{item.name}</Button>
+        )
+      })
+    })
   }
 }
 
