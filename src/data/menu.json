@@ -41,23 +41,19 @@
       ],
       "bebidas": [
         {
-          "name": "agua",
-          "length": "500ml",
+          "name": "agua 500ml",
           "price": 5
         },
         {
-          "name": "agua",
-          "length": "750ml",
+          "name": "agua 750ml",
           "price": 8
         },
         {
-          "name": "gaseosa",
-          "length": "500ml",
+          "name": "gaseosa 500ml",
           "price": 8
         },
         {
-          "name": "gaseosa",
-          "length": "750ml",
+          "name": "gaseosa 750ml",
           "price": 10
         }
       ]
