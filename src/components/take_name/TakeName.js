@@ -14,12 +14,12 @@ class TakeName extends Component {
   render() {
     if (this.state.tookName) {
       return (
-        <Container>
+        <div>
           <button className="btn waves-effect waves-light" type="submit" name="action" onClick={this.handleCancel.bind(this)}>Cancel
               <Icon small right>close</Icon>
           </button>
           <TakeOrder name={this.state.name} />
-        </Container>
+        </div>
       )
     } else {
       return (

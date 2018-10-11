@@ -21,11 +21,11 @@
     "lunchdinner": {
       "hamburguesas": [
         {
-          "name": "Simple",
+          "name": "Hamburguesa simple",
           "price": 10
         },
         {
-          "name": "Doble",
+          "name": "Hamburguesa doble",
           "price": 15
         }
       ],
@@ -35,25 +35,25 @@
           "price": 5
         },
         {
-          "name": "Onion Rings",
+          "name": "Aros de cebolla",
           "price": 5
         }
       ],
       "bebidas": [
         {
-          "name": "agua 500ml",
+          "name": "Agua 500ml",
           "price": 5
         },
         {
-          "name": "agua 750ml",
+          "name": "Agua 750ml",
           "price": 8
         },
         {
-          "name": "gaseosa 500ml",
+          "name": "Gaseosa 500ml",
           "price": 8
         },
         {
-          "name": "gaseosa 750ml",
+          "name": "Gaseosa 750ml",
           "price": 10
         }
       ]

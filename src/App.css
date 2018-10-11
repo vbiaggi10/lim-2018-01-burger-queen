@@ -26,9 +26,19 @@
   height: 100vh;
 }
 
-.btn{
-  height: auto;
-  width: auto;
+.btn-item {
+  margin: .5rem;
+  height: 6rem;
+  width: 13rem;
+  line-height: 1.5rem;
+}
+
+.btn-hamburger {
+  margin: .8rem;
+}
+
+.input-hamburger {
+  margin: 2rem;
 }
 
 @keyframes App-logo-spin {

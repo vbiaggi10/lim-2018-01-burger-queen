@@ -24,18 +24,24 @@ class Breakfast extends Component {
         if(header === 'Sandwiches'){
           if(item.name.substr(0, 4) === 'Sand'){
             return (
-              <Button key={i} waves='light' name={item.name} price={item.price}>{item.name}  S/.{item.price}</Button>
+              <Button onClick={this.handleOrder.bind(this)} className='btn-item' key={i} waves='light' name={`${item.name}/${item.price}`}>{item.name}<br/>S/ {item.price}</Button>
             )
           }
         }else{
           if(item.name.substr(0, 4) === 'Café' || item.name.substr(0, 4) === 'Jugo'){
             return (
-              <Button key={i} waves='light' name={item.name} price={item.price}>{item.name}  S/.{item.price}</Button>
+              <Button onClick={this.handleOrder.bind(this)} className='btn-item' key={i} waves='light' name={`${item.name}/${item.price}`}>{item.name}<br/>S/ {item.price}</Button>
             )
           }
         }
       })
     })
+  }
+
+  handleOrder(e) {
+    e.preventDefault();
+    const newTarget = e.target.name.split('/');
+    this.props.takingOrder(newTarget[0], newTarget[1])
   }
 }
 
