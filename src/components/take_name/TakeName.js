@@ -41,7 +41,9 @@ class TakeName extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({ tookName: true })
+    if(this.state.name){
+      this.setState({ tookName: true })
+    }
   }
 
   handleCancel(e) {

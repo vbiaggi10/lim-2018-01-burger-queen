@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Tabs, Tab, Container, Icon} from 'react-materialize';
+import {Tabs, Tab, Container} from 'react-materialize';
 import Breakfast from './Breakfast';
 import LunchDinner from './LunchDinner';
 
@@ -13,7 +13,8 @@ class TakeOrder extends Component {
   }
   render() {
     const price = this.totalPrice();    
-    const totalPrice = price[price.length - 1];
+    // const totalPrice = price[price.length - 1];
+    console.log(price)
     return (
       <div className="row">
         <h1>{this.props.name}'s order</h1>
@@ -26,7 +27,7 @@ class TakeOrder extends Component {
         <Container className="col s4">
           <h3>Order</h3>
           {this.showOrder()}
-          <p className="total-price">Total: {totalPrice ? totalPrice : 0}</p>
+          {/* <p className="total-price">Total: S/ {totalPrice ? totalPrice : 0}</p> */}
         </Container>
       </div>
     );
@@ -38,7 +39,7 @@ class TakeOrder extends Component {
         return (
           <div key={`show${i}`}>
             <span>{order.orderName} S/ {order.orderPrice}</span> 
-            <a className='btn-delete' ref={this.myRef} name={order.orderName} onClick={this.deleteOrder.bind(this)}><Icon small>delete</Icon></a>
+            <button className='btn-delete' onClick={this.deleteOrder.bind(this)} name={order.orderName} id={i}>🗑️</button>
           </div>)
       })
     }
@@ -47,32 +48,41 @@ class TakeOrder extends Component {
   takingOrder(name, price) {
     const { orders } = this.state;
     orders.push({
+      // orderId: '',
       orderName: name,
       orderPrice: price
     });
+    // const newArray = orders.map((order, i) => {
+    //   order.orderId = i;
+    //   return order;
+    // })
+    // console.log(newArray)
     this.setState({orders})
   }
 
   totalPrice() {
     let acum = 0;
     if(this.state.orders !== []){
-      return this.state.orders.map( (order) => {
+      return this.state.orders.forEach( order => {
         const parsePrice = parseInt(order.orderPrice);
         acum = acum + parsePrice;
+        console.log(acum)
         return acum;
       })
+      // return this.state.orders.map( (order) => {
+      //   const parsePrice = parseInt(order.orderPrice);
+      //   acum = acum + parsePrice;
+      //   console.log(acum)
+      //   return acum;
+      // })
     }
   }
 
   deleteOrder(e) {
-    const node = this.myRef.current;
+    const target = e.target;
     const orders = this.state.orders;
-    orders.forEach(order => {
-      if (order.orderName === node.name) {
-        const indexUpdate = orders.indexOf(order)
-        delete orders[indexUpdate];
-      }
-    })
+    delete orders[target.id];
+    this.setState({orders});
   }
   
 }
