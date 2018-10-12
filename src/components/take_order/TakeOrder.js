@@ -73,7 +73,6 @@ class TakeOrder extends Component {
         delete orders[indexUpdate];
       }
     })
-    console.log(this.state.orders)
   }
   
 }
