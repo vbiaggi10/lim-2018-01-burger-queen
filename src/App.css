@@ -41,6 +41,14 @@
   margin: 2rem;
 }
 
+.total-price {
+  border-top: 1px solid;
+}
+
+.btn-delete {
+  cursor: pointer;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
