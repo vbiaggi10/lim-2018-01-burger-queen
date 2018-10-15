@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Tabs, Tab, Container} from 'react-materialize';
+import {Tabs, Tab, Container, Button} from 'react-materialize';
 import Breakfast from './Breakfast';
 import LunchDinner from './LunchDinner';
 
@@ -7,17 +7,15 @@ class TakeOrder extends Component {
   constructor() {
     super();
     this.state = {
-      orders: []
+      orders: [],
+      totalOrders: []
     }
     this.myRef = React.createRef();
   }
   render() {
-    const price = this.totalPrice();    
-    // const totalPrice = price[price.length - 1];
-    console.log(price)
     return (
       <div className="row">
-        <h1>{this.props.name}'s order</h1>
+        <h2>Pedido de {this.props.name}</h2>
         <Container className="col s8">
           <Tabs className='tab-demo z-depth-1'>
             <Tab title="Breakfast" className="col s6" active> <Breakfast takingOrder={this.takingOrder.bind(this)}/> </Tab>
@@ -25,9 +23,10 @@ class TakeOrder extends Component {
           </Tabs>
         </Container>
         <Container className="col s4">
-          <h3>Order</h3>
-          {this.showOrder()}
-          {/* <p className="total-price">Total: S/ {totalPrice ? totalPrice : 0}</p> */}
+          <h4>Pedido</h4>
+          <div>{this.showOrder()}</div>
+          <div>{this.totalPrice()}</div>
+          <Button onClick={this.handleChangeStatus.bind(this)} waves='light'>Enviar a cocina</Button>
         </Container>
       </div>
     );
@@ -57,34 +56,33 @@ class TakeOrder extends Component {
     //   return order;
     // })
     // console.log(newArray)
-    this.setState({orders})
+    this.setState({orders: orders})
   }
 
   totalPrice() {
     let acum = 0;
+    let printTotalPrice = '';
     if(this.state.orders !== []){
-      return this.state.orders.forEach( order => {
+      this.state.orders.map( (order, i) => {
         const parsePrice = parseInt(order.orderPrice);
         acum = acum + parsePrice;
-        console.log(acum)
+        printTotalPrice = '';
         return acum;
       })
-      // return this.state.orders.map( (order) => {
-      //   const parsePrice = parseInt(order.orderPrice);
-      //   acum = acum + parsePrice;
-      //   console.log(acum)
-      //   return acum;
-      // })
-    }
-  }
+      return(printTotalPrice = <p className='total-price'>Total: S/ {acum}</p>);
+    } 
+  } 
 
   deleteOrder(e) {
     const target = e.target;
-    const orders = this.state.orders;
+    const orders= this.state.orders;    
     delete orders[target.id];
-    this.setState({orders});
+    this.setState({orders: orders});
   }
   
+  handleChangeStatus() {
+    this.props.handleChangeStatus(false)
+  }
 }
 
 export default TakeOrder;

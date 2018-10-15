@@ -51,6 +51,18 @@
   border: none;
 }
 
+.viewport {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-height: -webkit-fill-available;
+}
+
+.form{
+  margin: 0 auto;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
