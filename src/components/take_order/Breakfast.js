@@ -6,7 +6,7 @@ class Breakfast extends Component {
   render() {
     return (
       <div className="row">
-        <Collapsible popout>
+        <Collapsible popout accordion>
           <CollapsibleItem header="Sandwiches">
             {this.handleShowItems("Sandwiches")}
           </CollapsibleItem>

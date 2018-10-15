@@ -6,9 +6,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <nav>
+          <nav className="lime lighten-1">
             <div className="nav-wrapper">
-              <a href="#" className="brand-logo center">Burger queen</a>
+              <a href="#" className="brand-logo center">🍔 BURGER QUEEN 👑</a>
             </div>
           </nav>
           <TakeName />

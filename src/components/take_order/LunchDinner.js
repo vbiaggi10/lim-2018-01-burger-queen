@@ -7,24 +7,19 @@ class LunchDinner extends Component {
     super();
     this.state = {
       tempHamburgerName: '',
-      tempHamburgerPrice: '',
-      withSome: false
+      tempHamburgerPrice: ''
     }
   }
   render() {
     return (
       <div className="row">
-        <Collapsible popout>
+        <Collapsible popout accordion>
           <CollapsibleItem header='Hamburguesas'>
             <div>{this.handleShowHamburguer()}</div>
-            <div>
-              <Button onClick={this.handleTypeHamburger.bind(this)} name='res' className='btn-hamburger' waves='light'>Res</Button>
-              <Button onClick={this.handleTypeHamburger.bind(this)} name='pollo' className='btn-hamburger' waves='light'>Pollo</Button>
-              <Button onClick={this.handleTypeHamburger.bind(this)} name='vegetariana' className='btn-hamburger' waves='light'>Vegetariana</Button>
-            </div>
-            <div className=''>
-              <Input onChange={this.handleInputChange.bind(this)} checked={this.state.withSome} type='checkbox' value='red' name='Queso' price='1' label='Queso + S/.1' />
-              <Input onChange={this.handleInputChange.bind(this)} checked={this.state.withSome} type='checkbox' value='red' name='Huevo' price='1' label='Huevo + S/.1' />
+            <div className='hamburger-type'>
+              {/* <Input onChange={this.handleInputChange.bind(this)} checked={this.state.withSome} type='checkbox' value='red' name='/0' price='0' label='Normal' /> */}
+              <Input onChange={this.handleInputChange.bind(this)} checked={this.state.withSome} type='checkbox' value='red' name='Queso/1' price='1' label='Queso + S/.1' />
+              <Input onChange={this.handleInputChange.bind(this)} checked={this.state.withSome} type='checkbox' value='red' name='Huevo/1' price='1' label='Huevo + S/.1' />
             </div>
           </CollapsibleItem>
           <CollapsibleItem header='Acompañamientos'>
@@ -42,7 +37,15 @@ class LunchDinner extends Component {
     return data.map((lunchdinner) => {
       return lunchdinner.lunchdinner.hamburguesas.map((items, i) => {
         return (
-          <Button onClick={this.handleHamburguer.bind(this)} className='btn-item' key={`h${i}`} waves='light' name={`${items.name}/${items.price}`}>{items.name}<br />S/ {items.price}</Button>
+          <div className="col s6"  key={`h${i}`}>
+            {/* <Button onClick={this.handleHamburguer.bind(this)} className='btn-item' waves='light' name={`${items.name}/${items.price}`}>{items.name}<br />S/ {items.price}</Button> */}
+            <Input onChange={this.handleTypeHamburger.bind(this)} s={12} type='select' label={`Seleccione el tipo de ${items.name} S/ ${items.price}`} defaultValue='disabled' name={`${items.name}/${items.price}`}>
+              <option value='disabled' disabled>Tipo</option>
+              <option value='res'>Res</option>
+              <option value='pollo'>Pollo</option>
+              <option value='vegetariana'>Vegetariana</option>
+            </Input>
+          </div>
         )
       })
     })
@@ -70,25 +73,30 @@ class LunchDinner extends Component {
 
   handleHamburguer(e) {
     e.preventDefault();
+    e.target.style.background = '#7e7e7e';
     const newTarget = e.target.name.split('/');
     this.setState({ tempHamburgerName: newTarget[0], tempHamburgerPrice: newTarget[1] })
   }
 
   handleTypeHamburger(e) {
     e.preventDefault();
-    const name = this.state.tempHamburgerName + ' ' + e.target.name;
+    const newTarget = e.target.name.split('/');
+    const name = newTarget[0] + ' ' + e.target.value;
     localStorage.setItem('tempHamburgerName', name)
-    this.props.takingOrder(name, this.state.tempHamburgerPrice)
+    // localStorage.setItem('tempHamburgerPrice', newTarget[1])
+    this.props.takingOrder(name, newTarget[1])
   }
 
   handleInputChange(e) {
     e.preventDefault();
     const target = e.target;
-    console.log(localStorage.getItem('tempHamburgerName'))
+    const newTarget = e.target.name.split('/');
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = localStorage.getItem('tempHamburgerName') + ' + ' +target.name;
+    const name = localStorage.getItem('tempHamburgerName') + ' + ' +newTarget[0];
+    // const price = parseInt(newTarget[1]);
+    
     if (value) {
-      this.props.takingOrder(name, 1)
+      this.props.takingOrder(name, newTarget[1])
     }
   }
 

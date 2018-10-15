@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Tabs, Tab, Container, Button} from 'react-materialize';
+import {Tabs, Tab, Container, Button, Icon} from 'react-materialize';
 import Breakfast from './Breakfast';
 import LunchDinner from './LunchDinner';
 
@@ -8,14 +8,20 @@ class TakeOrder extends Component {
     super();
     this.state = {
       orders: [],
-      totalOrders: []
+      totalOrders: [],
+      activeTab: 'active',
+      clicked: true
     }
-    this.myRef = React.createRef();
   }
   render() {
     return (
       <div className="row">
-        <h2>Pedido de {this.props.name}</h2>
+        <div className="container-nav">
+            <h5>Pedido de {this.props.name}</h5>
+            <button className="btn waves-effect waves-light" type="submit" name="action" onClick={this.handleCancel.bind(this)}>Cancelar
+              <Icon small right>close</Icon>
+            </button>
+        </div>
         <Container className="col s8">
           <Tabs className='tab-demo z-depth-1'>
             <Tab title="Breakfast" className="col s6" active> <Breakfast takingOrder={this.takingOrder.bind(this)}/> </Tab>
@@ -23,13 +29,17 @@ class TakeOrder extends Component {
           </Tabs>
         </Container>
         <Container className="col s4">
-          <h4>Pedido</h4>
+          <h5>Pedido</h5>
           <div>{this.showOrder()}</div>
           <div>{this.totalPrice()}</div>
           <Button onClick={this.handleChangeStatus.bind(this)} waves='light'>Enviar a cocina</Button>
         </Container>
       </div>
     );
+  }
+
+  activeTab(value) {
+    return ((value === this.state.clicked) ? 'active' : '');
   }
 
   showOrder() {
@@ -47,29 +57,21 @@ class TakeOrder extends Component {
   takingOrder(name, price) {
     const { orders } = this.state;
     orders.push({
-      // orderId: '',
       orderName: name,
       orderPrice: price
     });
-    // const newArray = orders.map((order, i) => {
-    //   order.orderId = i;
-    //   return order;
-    // })
-    // console.log(newArray)
     this.setState({orders: orders})
   }
 
   totalPrice() {
     let acum = 0;
-    let printTotalPrice = '';
     if(this.state.orders !== []){
       this.state.orders.map( (order, i) => {
         const parsePrice = parseInt(order.orderPrice);
         acum = acum + parsePrice;
-        printTotalPrice = '';
         return acum;
       })
-      return(printTotalPrice = <p className='total-price'>Total: S/ {acum}</p>);
+      return(<p className='total-price'>Total: S/ {acum}</p>);
     } 
   } 
 
@@ -82,6 +84,10 @@ class TakeOrder extends Component {
   
   handleChangeStatus() {
     this.props.handleChangeStatus(false)
+  }
+
+  handleCancel() {
+    this.props.handleCancel(false)
   }
 }
 
