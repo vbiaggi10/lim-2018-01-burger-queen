@@ -47,6 +47,21 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
   <!-- And then your bundled js -->
   <script src="path/to/your/bundle.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCSsR2uHPQGPJcExFHJr28qR8fZpgN0VCg",
+      authDomain: "burger-queen-vbg.firebaseapp.com",
+      databaseURL: "https://burger-queen-vbg.firebaseio.com",
+      projectId: "burger-queen-vbg",
+      storageBucket: "burger-queen-vbg.appspot.com",
+      messagingSenderId: "1084212156500"
+    };
+    firebase.initializeApp(config);
+  </script>
 </body>
 
 </html>

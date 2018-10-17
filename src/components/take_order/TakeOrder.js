@@ -83,11 +83,34 @@ class TakeOrder extends Component {
   }
   
   handleChangeStatus() {
+    if(this.state.orders !== []){
+      this.state.orders.map( (order) => {
+        this.setInDataBase(order.orderName, order.orderPrice);
+      })
+    }
     this.props.handleChangeStatus(false)
   }
 
   handleCancel() {
     this.props.handleCancel(false)
+  }
+
+  setInDataBase(order, price) {
+    console.log(this.props.userId)
+    const db = window.firebase.firestore();
+    db.settings({
+      timestampsInSnapshots: true
+    });
+    db.collection("clients/"+this.props.userId).add({
+      order: order,
+      price: price
+    })
+    .then(() => {
+        console.log("Document successfully written!");
+    })
+    .catch((error) => {
+        console.error("Error writing document: ", error);
+    });
   }
 }
 

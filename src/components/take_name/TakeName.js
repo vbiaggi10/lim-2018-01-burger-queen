@@ -7,7 +7,8 @@ class TakeName extends Component {
     super();
     this.state = {
       name: '',
-      tookName: false
+      tookName: false,
+      userId: ''
     }
   }
 
@@ -15,7 +16,7 @@ class TakeName extends Component {
     if (this.state.tookName) {
       return (
         <div>
-          <TakeOrder name={this.state.name} handleChangeStatus={this.handleChangeStatus.bind(this)}  handleCancel={this.handleCancel.bind(this)}/>
+          <TakeOrder name={this.state.name} handleChangeStatus={this.handleChangeStatus.bind(this)}  handleCancel={this.handleCancel.bind(this)} userId={this.state.userId}/>
         </div>
       )
     } else {
@@ -39,6 +40,7 @@ class TakeName extends Component {
   handleSubmit(e) {
     e.preventDefault();
     if(this.state.name){
+      this.setInDataBase(this.state.name);
       this.setState({ tookName: true })
     }
   }
@@ -51,6 +53,22 @@ class TakeName extends Component {
     this.setState({ tookName: newState })    
   }
 
+  setInDataBase(name) {
+    const db = window.firebase.firestore();
+    db.settings({
+      timestampsInSnapshots: true
+    }); 
+    db.collection("clients").add({
+      name: name
+    })
+    .then((docRef) => {
+      // console.log("Document written with ID: ", docRef.id);
+      this.setState({userId: docRef.id})
+    })
+    .catch((error) => {
+        console.error("Error writing document: ", error);
+    });
+  }
 }
 
 export default TakeName;
