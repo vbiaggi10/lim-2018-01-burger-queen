@@ -52,7 +52,7 @@
   <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
   <script>
     // Initialize Firebase
-    var config = {
+    const config = {
       apiKey: "AIzaSyCSsR2uHPQGPJcExFHJr28qR8fZpgN0VCg",
       authDomain: "burger-queen-vbg.firebaseapp.com",
       databaseURL: "https://burger-queen-vbg.firebaseio.com",
@@ -61,6 +61,10 @@
       messagingSenderId: "1084212156500"
     };
     firebase.initializeApp(config);
+    firebase.firestore().settings({
+      timestampsInSnapshots: true
+    });
+    firebase.firestore().enablePersistence();
   </script>
 </body>
 

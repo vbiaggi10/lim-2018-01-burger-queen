@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Tabs, Tab, Container, Button, Icon} from 'react-materialize';
+import { Tabs, Tab, Container, Button, Icon } from 'react-materialize';
 import Breakfast from './Breakfast';
 import LunchDinner from './LunchDinner';
 
@@ -17,15 +17,15 @@ class TakeOrder extends Component {
     return (
       <div className="row">
         <div className="container-nav">
-            <h5>Pedido de {this.props.name}</h5>
-            <button className="btn waves-effect waves-light" type="submit" name="action" onClick={this.handleCancel.bind(this)}>Cancelar
+          <h5>Pedido de {this.props.name}</h5>
+          <button className="btn waves-effect waves-light" type="submit" name="action" onClick={this.handleCancel.bind(this)}>Cancelar
               <Icon small right>close</Icon>
-            </button>
+          </button>
         </div>
         <Container className="col s8">
           <Tabs className='tab-demo z-depth-1'>
-            <Tab title="Breakfast" className="col s6" active> <Breakfast takingOrder={this.takingOrder.bind(this)}/> </Tab>
-            <Tab title="Lunch / Dinner" className="col s6"> <LunchDinner takingOrder={this.takingOrder.bind(this)}/> </Tab>
+            <Tab title="Breakfast" className="col s6" active> <Breakfast takingOrder={this.takingOrder.bind(this)} /> </Tab>
+            <Tab title="Lunch / Dinner" className="col s6"> <LunchDinner takingOrder={this.takingOrder.bind(this)} /> </Tab>
           </Tabs>
         </Container>
         <Container className="col s4">
@@ -43,11 +43,11 @@ class TakeOrder extends Component {
   }
 
   showOrder() {
-    if(this.state.orders !== []){
-      return this.state.orders.map( (order, i) => {
+    if (this.state.orders !== []) {
+      return this.state.orders.map((order, i) => {
         return (
           <div key={`show${i}`}>
-            <span>{order.orderName} S/ {order.orderPrice}</span> 
+            <span>{order.orderName} S/ {order.orderPrice}</span>
             <button className='btn-delete' onClick={this.deleteOrder.bind(this)} name={order.orderName} id={i}>🗑️</button>
           </div>)
       })
@@ -60,56 +60,45 @@ class TakeOrder extends Component {
       orderName: name,
       orderPrice: price
     });
-    this.setState({orders: orders})
+    this.setState({ orders: orders })
   }
 
   totalPrice() {
     let acum = 0;
-    if(this.state.orders !== []){
-      this.state.orders.map( (order, i) => {
+    if (this.state.orders !== []) {
+      this.state.orders.map((order, i) => {
         const parsePrice = parseInt(order.orderPrice);
         acum = acum + parsePrice;
         return acum;
       })
-      return(<p className='total-price'>Total: S/ {acum}</p>);
-    } 
-  } 
+      return (<p className='total-price'>Total: S/ {acum}</p>);
+    }
+  }
 
   deleteOrder(e) {
     const target = e.target;
-    const orders= this.state.orders;    
+    const orders = this.state.orders;
     delete orders[target.id];
-    this.setState({orders: orders});
+    this.setState({ orders: orders });
   }
-  
+
   handleChangeStatus() {
-    if(this.state.orders !== []){
-      this.state.orders.map( (order) => {
-        this.setInDataBase(order.orderName, order.orderPrice);
-      })
+    if (this.state.orders !== []) {
+      this.saveLocal();
     }
-    this.props.handleChangeStatus(false)
+    this.props.handleChangeStatus(false);
   }
 
   handleCancel() {
     this.props.handleCancel(false)
   }
 
-  setInDataBase(order, price) {
-    const db = window.firebase.firestore();
-    db.settings({
-      timestampsInSnapshots: true
-    });
-    db.collection("clients").doc(this.props.userId).collection("orders").add({
-      order: order,
-      price: price
-    })
-    .then(() => {
-        console.log("Document successfully written!");
-    })
-    .catch((error) => {
-        console.error("Error writing document: ", error);
-    });
+  saveLocal() {
+    const newArray = {
+      clientName: this.props.name,
+      order: this.state.orders
+    }
+    this.props.saveLocal(this.state.orders);
   }
 }
 

@@ -8,7 +8,8 @@ class TakeName extends Component {
     this.state = {
       name: '',
       tookName: false,
-      userId: ''
+      userId: '',
+      clients: []
     }
   }
 
@@ -16,18 +17,18 @@ class TakeName extends Component {
     if (this.state.tookName) {
       return (
         <div>
-          <TakeOrder name={this.state.name} handleChangeStatus={this.handleChangeStatus.bind(this)}  handleCancel={this.handleCancel.bind(this)} userId={this.state.userId}/>
+          <TakeOrder name={this.state.name} handleChangeStatus={this.handleChangeStatus.bind(this)} handleCancel={this.handleCancel.bind(this)} userId={this.state.userId} saveLocal={this.saveLocal.bind(this)} />
         </div>
       )
     } else {
       return (
         <Row className="viewport">
-            <form className="col s12 form" onSubmit={this.handleSubmit.bind(this)}>
-              <Input s={12} onChange={this.handleChange.bind(this)} label="Nombre" />
-              <button className="btn waves-effect waves-light" type="submit" name="action">Enviar
+          <form className="col s12 form" onSubmit={this.handleSubmit.bind(this)}>
+            <Input s={12} onChange={this.handleChange.bind(this)} label="Nombre" />
+            <button className="btn waves-effect waves-light" type="submit" name="action">Enviar
                 <Icon small right>send</Icon>
-              </button>
-            </form>
+            </button>
+          </form>
         </Row>
       );
     }
@@ -39,8 +40,7 @@ class TakeName extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    if(this.state.name){
-      this.setInDataBase(this.state.name);
+    if (this.state.name) {
       this.setState({ tookName: true })
     }
   }
@@ -50,23 +50,19 @@ class TakeName extends Component {
   }
 
   handleChangeStatus(newState) {
-    this.setState({ tookName: newState })    
+    this.setState({ tookName: newState })
   }
 
-  setInDataBase(name) {
+  saveLocal(order) {
     const db = window.firebase.firestore();
-    db.settings({
-      timestampsInSnapshots: true
-    }); 
     db.collection("clients").add({
-      name: name
-    })
-    .then((docRef) => {
+      name: this.state.name,
+      order: order
+    }).then((docRef) => {
       console.log("Document successfully written!");
-      this.setState({userId: docRef.id})
-    })
-    .catch((error) => {
-        console.error("Error writing document: ", error);
+      this.setState({ userId: docRef.id })
+    }).catch((error) => {
+      console.error("Error writing document: ", error);
     });
   }
 }
