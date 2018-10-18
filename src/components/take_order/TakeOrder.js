@@ -96,12 +96,11 @@ class TakeOrder extends Component {
   }
 
   setInDataBase(order, price) {
-    console.log(this.props.userId)
     const db = window.firebase.firestore();
     db.settings({
       timestampsInSnapshots: true
     });
-    db.collection("clients/"+this.props.userId).add({
+    db.collection("clients").doc(this.props.userId).collection("orders").add({
       order: order,
       price: price
     })

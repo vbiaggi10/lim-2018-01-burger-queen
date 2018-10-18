@@ -62,7 +62,7 @@ class TakeName extends Component {
       name: name
     })
     .then((docRef) => {
-      // console.log("Document written with ID: ", docRef.id);
+      console.log("Document successfully written!");
       this.setState({userId: docRef.id})
     })
     .catch((error) => {
