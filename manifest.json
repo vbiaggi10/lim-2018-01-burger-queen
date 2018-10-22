@@ -1,15 +1,19 @@
 {
-  "short_name": "Burger Queen",
-  "name": "Burger Queen",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    }
-  ],
-  "start_url": "./index.html",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+    "short_name": "Burger Queen",
+    "name": "Burger Queen",
+    "icons": [
+        {
+            "src": "/images/favicon.ico",
+            "sizes": "64x64 32x32 24x24 16x16",
+            "type": "image/x-icon"
+        }
+    ],
+    "start_url": "https://vbiaggi10.github.io/lim-2018-01-burger-queen/index.html",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff",
+    "lang": "",
+    "orientation": "portrait",
+    "description": "Plataforma web para cadenas de comida en general, la cual permite que el empleado pueda registrar el pedido que solicita el cliente.",
+    "scope": "./"
 }
