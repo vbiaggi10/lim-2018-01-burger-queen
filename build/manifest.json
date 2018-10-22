@@ -8,7 +8,7 @@
             "type": "image/x-icon"
         }
     ],
-    "start_url": "https://vbiaggi10.github.io/lim-2018-01-burger-queen/?utm_source=web_app_manifest",
+    "start_url": "https://vbiaggi10.github.io/lim-2018-01-burger-queen/index.html",
     "display": "standalone",
     "theme_color": "#000000",
     "background_color": "#ffffff",
