@@ -26,7 +26,7 @@ class TakeName extends Component {
           <form className="col s12 form" onSubmit={this.handleSubmit.bind(this)}>
             <Input s={12} onChange={this.handleChange.bind(this)} label="Nombre" />
             <button className="btn waves-effect waves-light" type="submit" name="action">Enviar
-                <Icon small right>send</Icon>
+              <Icon small right>send</Icon>
             </button>
           </form>
         </Row>
@@ -55,9 +55,16 @@ class TakeName extends Component {
 
   saveLocal(order) {
     const db = window.firebase.firestore();
+    const today = new Date();
+    const getHours = today.getHours() + ":" + (today.getMinutes()<10?'0':'') + today.getMinutes();
+    const getDate = today.getDate() + "/" + (today.getMonth() +1) + "/" + today.getFullYear();
     db.collection("clients").add({
       name: this.state.name,
-      order: order
+      order: order,
+      status: false,
+      date: getDate,
+      hour: getHours,
+      timestamp: window.firebase.firestore.FieldValue.serverTimestamp()
     }).then((docRef) => {
       console.log("Document successfully written!");
       this.setState({ userId: docRef.id })

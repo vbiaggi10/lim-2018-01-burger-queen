@@ -17,7 +17,6 @@ class LunchDinner extends Component {
           <CollapsibleItem header='Hamburguesas'>
             <div>{this.handleShowHamburguer()}</div>
             <div className='hamburger-type'>
-              {/* <Input onChange={this.handleInputChange.bind(this)} checked={this.state.withSome} type='checkbox' value='red' name='/0' price='0' label='Normal' /> */}
               <Input onChange={this.handleInputChange.bind(this)} checked={this.state.withSome} type='checkbox' value='red' name='Queso/1' price='1' label='Queso + S/.1' />
               <Input onChange={this.handleInputChange.bind(this)} checked={this.state.withSome} type='checkbox' value='red' name='Huevo/1' price='1' label='Huevo + S/.1' />
             </div>
@@ -38,7 +37,6 @@ class LunchDinner extends Component {
       return lunchdinner.lunchdinner.hamburguesas.map((items, i) => {
         return (
           <div className="col s6"  key={`h${i}`}>
-            {/* <Button onClick={this.handleHamburguer.bind(this)} className='btn-item' waves='light' name={`${items.name}/${items.price}`}>{items.name}<br />S/ {items.price}</Button> */}
             <Input onChange={this.handleTypeHamburger.bind(this)} s={12} type='select' label={`Seleccione el tipo de ${items.name} S/ ${items.price}`} defaultValue='disabled' name={`${items.name}/${items.price}`}>
               <option value='disabled' disabled>Tipo</option>
               <option value='res'>Res</option>

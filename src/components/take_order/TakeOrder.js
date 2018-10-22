@@ -9,24 +9,28 @@ class TakeOrder extends Component {
     this.state = {
       orders: [],
       totalOrders: [],
-      activeTab: 'active',
-      clicked: true
+      newOrders: [],
+      activeTab: '',
+      nameActiveTap: ''
     }
   }
+
   render() {
     return (
       <div className="row">
         <div className="container-nav">
           <h5>Pedido de {this.props.name}</h5>
           <button className="btn waves-effect waves-light" type="submit" name="action" onClick={this.handleCancel.bind(this)}>Cancelar
-              <Icon small right>close</Icon>
+            <Icon small right>close</Icon>
           </button>
         </div>
         <Container className="col s8">
-          <Tabs className='tab-demo z-depth-1'>
-            <Tab title="Breakfast" className="col s6" active> <Breakfast takingOrder={this.takingOrder.bind(this)} /> </Tab>
-            <Tab title="Lunch / Dinner" className="col s6"> <LunchDinner takingOrder={this.takingOrder.bind(this)} /> </Tab>
-          </Tabs>
+          <div onClick={this.activeTab.bind(this)}>
+            <Tabs className='tab-demo z-depth-1'>
+              <Tab title="Breakfast" className="col s6" active> <Breakfast takingOrder={this.takingOrder.bind(this)} /> </Tab>
+              <Tab title="Lunch / Dinner" className="col s6"> <LunchDinner takingOrder={this.takingOrder.bind(this)} /> </Tab>
+            </Tabs>
+          </div>
         </Container>
         <Container className="col s4">
           <h5>Pedido</h5>
@@ -38,8 +42,13 @@ class TakeOrder extends Component {
     );
   }
 
-  activeTab(value) {
-    return ((value === this.state.clicked) ? 'active' : '');
+  activeTab(e) {
+    if(e.target.tagName === "A"){
+      // this.setState({activeTab: e.target.className})
+      console.log(e.target.href)
+      console.log(e.target.className)
+    }
+    // return ((value === this.state.clicked) ? 'active' : '');
   }
 
   showOrder() {
@@ -49,7 +58,8 @@ class TakeOrder extends Component {
           <div key={`show${i}`}>
             <span>{order.orderName} S/ {order.orderPrice}</span>
             <button className='btn-delete' onClick={this.deleteOrder.bind(this)} name={order.orderName} id={i}>🗑️</button>
-          </div>)
+          </div>
+        )
       })
     }
   }
@@ -78,8 +88,16 @@ class TakeOrder extends Component {
   deleteOrder(e) {
     const target = e.target;
     const orders = this.state.orders;
+    const newOrders = [];
     delete orders[target.id];
-    this.setState({ orders: orders });
+    orders.map(order => {
+      newOrders.push({
+        orderName: order.orderName,
+        orderPrice: order.orderPrice
+      });
+      return order;
+    })
+    this.setState({ orders: newOrders });
   }
 
   handleChangeStatus() {
@@ -94,10 +112,6 @@ class TakeOrder extends Component {
   }
 
   saveLocal() {
-    const newArray = {
-      clientName: this.props.name,
-      order: this.state.orders
-    }
     this.props.saveLocal(this.state.orders);
   }
 }

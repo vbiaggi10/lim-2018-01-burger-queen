@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import TakeName from './components/take_name/TakeName';
+import Header from './components/header/Header';
+import Content from './components/content/Content';
+import items from './data/routes';
 
 class App extends Component {
   render() {
+    const { children } = this.props;
     return (
       <div className="App">
-          <nav className="lime lighten-1">
-            <div className="nav-wrapper">
-              <a href="#" className="brand-logo center">🍔 BURGER QUEEN 👑</a>
-            </div>
-          </nav>
-          <TakeName />
+          <Header props={this.props} items={items}/>
+          <Content body={children} />
       </div>
     );
   }
