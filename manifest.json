@@ -1,18 +1,113 @@
 {
-    "short_name": "Burger Queen",
+    "short_name": "burgerqueen",
     "name": "Burger Queen",
     "icons": [
         {
-            "src": "/images/favicon.ico",
+            "src": "/images/images/favicon.ico",
             "sizes": "64x64 32x32 24x24 16x16",
             "type": "image/x-icon"
+        },
+        {
+            "src": "/images/2b98ab56-31c2-cbea-7d2d-272e42765834.webPlatform.png",
+            "sizes": "44x44",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/21d00f40-940c-da29-89d6-5736ab76329d.webPlatform.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/windows10/SplashScreen.scale-200.png.png",
+            "sizes": "1240x600",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/c0008da2-0cf8-db6b-67e1-8642f83953de.webPlatform.png",
+            "sizes": "300x300",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/74aeea19-f7b6-d6cd-6a2f-8eb5b4cc9c60.webPlatform.png",
+            "sizes": "150x150",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/a88f7c71-9a59-5ced-8529-d7bd5ef50579.webPlatform.png",
+            "sizes": "88x88",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/f2e32444-6939-a43b-c244-2730bf914251.webPlatform.png",
+            "sizes": "24x24",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/f04dbd5d-e872-e16a-fc2f-9f7a3ecc3ee8.webPlatform.png",
+            "sizes": "50x50",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/07171238-5bea-3e74-5fb1-e7e8a85b614b.webPlatform.png",
+            "sizes": "620x300",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/80850de9-1305-4a09-c0f4-d4124f7f0ab2.webPlatform.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/aa5e2dc8-ea8c-c496-6213-f41da516a564.webPlatform.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/0d3067ff-a5ad-da6c-e731-99876e0cbe74.webPlatform.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/10bdbfbf-f79d-3dcb-7de0-858fb0232c4d.webPlatform.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/72c0807e-8c3a-47bc-6f4e-03fc713b5f2a.webPlatform.png",
+            "sizes": "36x36",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/ios/ios-appicon-1024-1024.png",
+            "sizes": "1024x1024",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/9d16367f-1285-f50d-979b-47f8822f27da.webPlatform.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/b53c3a62-bcb1-f1cb-704b-39e2f8ae5ab9.webPlatform.png",
+            "sizes": "152x152",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/3220dd1b-ae7e-59c3-ad17-3e3ee55882d5.webPlatform.png",
+            "sizes": "120x120",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/f0b24282-6d38-cd18-e817-6c428ec33071.webPlatform.png",
+            "sizes": "76x76",
+            "type": "image/png"
         }
     ],
-    "start_url": "https://vbiaggi10.github.io/lim-2018-01-burger-queen/index.html",
+    "start_url": "https://vbiaggi10.github.io/lim-2018-01-burger-queen/?utm_source=web_app_manifest",
     "display": "standalone",
     "theme_color": "#000000",
     "background_color": "#ffffff",
-    "lang": "",
+    "lang": "Spanish; Castilian",
     "orientation": "portrait",
     "description": "Plataforma web para cadenas de comida en general, la cual permite que el empleado pueda registrar el pedido que solicita el cliente.",
     "scope": "./"
