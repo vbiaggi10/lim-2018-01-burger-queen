@@ -43,7 +43,7 @@ class TakeOrder extends Component {
   }
 
   activeTab(e) {
-    if(e.target.tagName === "A"){
+    if (e.target.tagName === "A") {
       // this.setState({activeTab: e.target.className})
       console.log(e.target.href)
       console.log(e.target.className)

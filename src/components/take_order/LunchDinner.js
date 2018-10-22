@@ -36,7 +36,7 @@ class LunchDinner extends Component {
     return data.map((lunchdinner) => {
       return lunchdinner.lunchdinner.hamburguesas.map((items, i) => {
         return (
-          <div className="col s6"  key={`h${i}`}>
+          <div className="col s6" key={`h${i}`}>
             <Input onChange={this.handleTypeHamburger.bind(this)} s={12} type='select' label={`Seleccione el tipo de ${items.name} S/ ${items.price}`} defaultValue='disabled' name={`${items.name}/${items.price}`}>
               <option value='disabled' disabled>Tipo</option>
               <option value='res'>Res</option>
@@ -90,9 +90,9 @@ class LunchDinner extends Component {
     const target = e.target;
     const newTarget = e.target.name.split('/');
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = localStorage.getItem('tempHamburgerName') + ' + ' +newTarget[0];
+    const name = localStorage.getItem('tempHamburgerName') + ' + ' + newTarget[0];
     // const price = parseInt(newTarget[1]);
-    
+
     if (value) {
       this.props.takingOrder(name, newTarget[1])
     }

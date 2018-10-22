@@ -16,15 +16,15 @@ class TakeName extends Component {
     const { orders } = this.state;
     db.collection("clients").orderBy("timestamp", "desc").get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-          orders.push({
-            id: doc.id,
-            date: doc.data().date,
-            hour: doc.data().hour,
-            name: doc.data().name,
-            order: doc.data().order,
-            status: doc.data().status
-          });
-        this.setState({orders: orders})
+        orders.push({
+          id: doc.id,
+          date: doc.data().date,
+          hour: doc.data().hour,
+          name: doc.data().name,
+          order: doc.data().order,
+          status: doc.data().status
+        });
+        this.setState({ orders: orders })
       });
     });
   }
@@ -46,8 +46,8 @@ class TakeName extends Component {
 
           <tbody>
             {this.state.orders.map((element, i) => {
-              return(
-                <ShowRecord key={`record-${i}`} id={element.id} name={element.name} order={element.order} status={element.status} date={element.date} hour={element.hour} />          
+              return (
+                <ShowRecord key={`record-${i}`} id={element.id} name={element.name} order={element.order} status={element.status} date={element.date} hour={element.hour} />
               )
             })}
           </tbody>

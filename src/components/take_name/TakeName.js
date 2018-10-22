@@ -56,8 +56,8 @@ class TakeName extends Component {
   saveLocal(order) {
     const db = window.firebase.firestore();
     const today = new Date();
-    const getHours = today.getHours() + ":" + (today.getMinutes()<10?'0':'') + today.getMinutes();
-    const getDate = today.getDate() + "/" + (today.getMonth() +1) + "/" + today.getFullYear();
+    const getHours = today.getHours() + ":" + (today.getMinutes() < 10 ? '0' : '') + today.getMinutes();
+    const getDate = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
     db.collection("clients").add({
       name: this.state.name,
       order: order,

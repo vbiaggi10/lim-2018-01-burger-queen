@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Col, Card, Table} from 'react-materialize';
+import { Col, Card, Table } from 'react-materialize';
 
 class ViewOrders extends Component {
   constructor() {
@@ -11,18 +11,18 @@ class ViewOrders extends Component {
 
   componentWillMount() {
     let acum = 0;
-    this.props.order.forEach( order => {
+    this.props.order.forEach(order => {
       const parsePrice = parseInt(order.orderPrice);
       acum = acum + parsePrice;
       return acum;
     })
-    this.setState({totalPrice: acum})
+    this.setState({ totalPrice: acum })
   }
 
   render() {
     return (
       <Col m={6} s={12}>
-        <Card title={`Orden de ${this.props.name}`} actions={[ this.props.status ? null : (<a href=' ' onClick={this.handleChangeStatus.bind(this)}>Terminar</a>)]}>
+        <Card title={`Orden de ${this.props.name}`} actions={[this.props.status ? null : (<a href=' ' onClick={this.handleChangeStatus.bind(this)}>Terminar</a>)]}>
           <p className="grey-text text-lighten-1">{this.props.id}</p>
           <p>{this.props.hour} {this.props.date}</p>
           <Table>
@@ -34,14 +34,14 @@ class ViewOrders extends Component {
             </thead>
             <tbody>
               {this.props.order ? (this.props.order.map((order, i) => {
-                return(
+                return (
                   <tr key={`ordernameprice-${i}`}>
                     <td>{order.orderName}</td>
                     <td>S/ {order.orderPrice}</td>
                   </tr>
                 )
               })) : null
-            }
+              }
             </tbody>
           </Table>
           <p>Total: S/ {this.state.totalPrice}</p>
