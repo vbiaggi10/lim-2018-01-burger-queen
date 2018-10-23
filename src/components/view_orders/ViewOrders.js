@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ShowOrder from './ShowOrder';
-import { Col } from 'react-materialize';
+import { Col, Row } from 'react-materialize';
 
 const db = window.firebase.firestore();
 
@@ -34,20 +34,22 @@ class ViewOrders extends Component {
 
   render() {
     return (
-      <div className="row">
+      <Row>
         <Col m={6} s={12}>
           <h5>En proceso</h5>
           {this.state.orders.map((element, i) => {
             if (!element.status) return (<ShowOrder key={`false-${i}`} id={element.id} name={element.name} order={element.order} status={element.status} date={element.date} hour={element.hour} handleChangeStatus={this.handleChangeStatus.bind(this)} />)
+            return true;
           })}
         </Col>
         <Col m={6} s={12}>
           <h5>Terminado</h5>
           {this.state.orders.map((element, i) => {
             if (element.status) return (<ShowOrder key={`true-${i}`} id={element.id} name={element.name} order={element.order} status={element.status} date={element.date} hour={element.hour} handleChangeStatus={this.handleChangeStatus.bind(this)} />)
+            return true
           })}
         </Col>
-      </div>
+      </Row>
     );
   }
 
