@@ -4,6 +4,8 @@ import data from '../../data/menu.json';
 
 class Breakfast extends Component {
   render() {
+    console.log(this.props.collapsibleSandwich);
+    
     return (
       <div className="row">
         <Collapsible popout accordion>
@@ -43,6 +45,14 @@ class Breakfast extends Component {
     const newTarget = e.target.name.split('/');
     this.props.takingOrder(newTarget[0], newTarget[1])
   }
+
+  // handleCollapsibleClick(e) {
+  //   console.log(e.target)
+  //   if(e.target.innerHTML === 'Sandwiches'){
+  //     e.target.class = 'collapsible-header' + this.props.collapsibleSandwich
+  //   }
+  //   this.props.handleCollapsibleClick(e.target.innerHTML); 
+  // }
 }
 
 export default Breakfast;

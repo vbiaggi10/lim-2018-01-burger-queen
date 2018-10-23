@@ -10,8 +10,10 @@ class TakeOrder extends Component {
       orders: [],
       totalOrders: [],
       newOrders: [],
-      activeTab: '',
-      nameActiveTap: ''
+      tabBreakfast: true,
+      tabLunch: false,
+      collapsibleSandwich: false,
+      collapsibleDrinks: false,
     }
   }
 
@@ -25,12 +27,10 @@ class TakeOrder extends Component {
           </button>
         </div>
         <Container className="col s8">
-          <div onClick={this.activeTab.bind(this)}>
-            <Tabs className='tab-demo z-depth-1'>
-              <Tab title="Breakfast" className="col s6" active> <Breakfast takingOrder={this.takingOrder.bind(this)} /> </Tab>
-              <Tab title="Lunch / Dinner" className="col s6"> <LunchDinner takingOrder={this.takingOrder.bind(this)} /> </Tab>
-            </Tabs>
-          </div>
+          <Tabs className='tab-demo z-depth-1' onChange={this.handleTabChange}>
+            <Tab title="Breakfast" className="col s6" active={this.state.tabBreakfast}> <Breakfast takingOrder={this.takingOrder.bind(this)} collapsibleSandwich={this.state.collapsibleSandwich} collapsibleDrinks={this.state.collapsibleDrinks} handleCollapsibleClick={this.handleCollapsibleClick.bind(this)}/> </Tab>
+            <Tab title="Lunch / Dinner" className="col s6" active={this.state.tabLunch}> <LunchDinner takingOrder={this.takingOrder.bind(this)} /> </Tab>
+          </Tabs>
         </Container>
         <Container className="col s4">
           <h5>Pedido</h5>
@@ -40,15 +40,6 @@ class TakeOrder extends Component {
         </Container>
       </div>
     );
-  }
-
-  activeTab(e) {
-    if (e.target.tagName === "A") {
-      // this.setState({activeTab: e.target.className})
-      console.log(e.target.href)
-      console.log(e.target.className)
-    }
-    // return ((value === this.state.clicked) ? 'active' : '');
   }
 
   showOrder() {
@@ -114,6 +105,23 @@ class TakeOrder extends Component {
   saveLocal() {
     this.props.saveLocal(this.state.orders);
   }
+
+  handleTabChange = (e) =>{
+    const sliceEvent = e.slice(-1)
+    if(sliceEvent === '0'){
+      this.setState({tabBreakfast: true, tabLunch: false})
+    }else {
+      this.setState({tabBreakfast: false, tabLunch: true})
+    }
+  }
+
+  // handleCollapsibleClick(value){
+  //   if(value === "Sandwiches"){
+  //     this.setState({collapsibleSandwich: true, collapsibleDrinks: false})
+  //   }else {
+  //     this.setState({collapsibleSandwich: false, collapsibleDrinks: true})
+  //   } 
+  // }
 }
 
 export default TakeOrder;
