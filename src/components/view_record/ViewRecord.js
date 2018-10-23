@@ -32,7 +32,7 @@ class TakeName extends Component {
   render() {
     return (
       <Container>
-        <Table>
+        <Table responsive>
           <thead>
             <tr>
               <th data-field="id">Id</th>
