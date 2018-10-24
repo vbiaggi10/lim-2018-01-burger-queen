@@ -13,18 +13,18 @@ class LunchDinner extends Component {
   render() {
     return (
       <div className="row">
-        <Collapsible popout accordion>
-          <CollapsibleItem header='Hamburguesas'>
+        <Collapsible popout accordion defaultActiveKey={this.props.collapsibleLD}>
+          <CollapsibleItem header='Hamburguesas' onClick={this.handleCollapsibleClickLD.bind(this)}>
             <div>{this.handleShowHamburguer()}</div>
             <div className='hamburger-type'>
               <Input onChange={this.handleInputChange.bind(this)} checked={this.state.withSome} type='checkbox' value='red' name='Queso/1' price='1' label='Queso + S/.1' />
               <Input onChange={this.handleInputChange.bind(this)} checked={this.state.withSome} type='checkbox' value='red' name='Huevo/1' price='1' label='Huevo + S/.1' />
             </div>
           </CollapsibleItem>
-          <CollapsibleItem header='Acompañamientos'>
+          <CollapsibleItem header='Acompañamientos' onClick={this.handleCollapsibleClickLD.bind(this)}>
             {this.handleShowAccompaniments()}
           </CollapsibleItem>
-          <CollapsibleItem header='Bebidas'>
+          <CollapsibleItem header='Bebidas' onClick={this.handleCollapsibleClickLD.bind(this)}>
             {this.handleShowDrinks()}
           </CollapsibleItem>
         </Collapsible>
@@ -102,6 +102,10 @@ class LunchDinner extends Component {
     e.preventDefault();
     const newTarget = e.target.name.split('/');
     this.props.takingOrder(newTarget[0], newTarget[1])
+  }
+
+  handleCollapsibleClickLD(e) {
+    this.props.handleCollapsibleClickLD(e.target.innerHTML); 
   }
 }
 

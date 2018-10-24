@@ -12,8 +12,8 @@ class TakeOrder extends Component {
       newOrders: [],
       tabBreakfast: true,
       tabLunch: false,
-      collapsibleSandwich: false,
-      collapsibleDrinks: false,
+      collapsibleB: '',
+      collapsibleLD: '',
     }
   }
 
@@ -28,8 +28,8 @@ class TakeOrder extends Component {
         </div>
         <Container className="col s8">
           <Tabs className='tab-demo z-depth-1' onChange={this.handleTabChange}>
-            <Tab title="Breakfast" className="col s6" active={this.state.tabBreakfast}> <Breakfast takingOrder={this.takingOrder.bind(this)} collapsibleSandwich={this.state.collapsibleSandwich} collapsibleDrinks={this.state.collapsibleDrinks} handleCollapsibleClick={this.handleCollapsibleClick.bind(this)}/> </Tab>
-            <Tab title="Lunch / Dinner" className="col s6" active={this.state.tabLunch}> <LunchDinner takingOrder={this.takingOrder.bind(this)} /> </Tab>
+            <Tab title="Breakfast" className="col s6" active={this.state.tabBreakfast}> <Breakfast takingOrder={this.takingOrder.bind(this)} collapsibleB={this.state.collapsibleB} handleCollapsibleClickB={this.handleCollapsibleClickB.bind(this)}/> </Tab>
+            <Tab title="Lunch / Dinner" className="col s6" active={this.state.tabLunch}> <LunchDinner takingOrder={this.takingOrder.bind(this)} collapsibleLD={this.state.collapsibleLD} handleCollapsibleClickLD={this.handleCollapsibleClickLD.bind(this)}/> </Tab>
           </Tabs>
         </Container>
         <Container className="col s4">
@@ -115,13 +115,23 @@ class TakeOrder extends Component {
     }
   }
 
-  // handleCollapsibleClick(value){
-  //   if(value === "Sandwiches"){
-  //     this.setState({collapsibleSandwich: true, collapsibleDrinks: false})
-  //   }else {
-  //     this.setState({collapsibleSandwich: false, collapsibleDrinks: true})
-  //   } 
-  // }
+  handleCollapsibleClickB(value){
+    if(value === "Sandwiches"){
+      this.setState({collapsibleB: 0})
+    }else if(value === "Bebidas") {
+      this.setState({collapsibleB: 1})
+    }
+  }
+
+  handleCollapsibleClickLD(value){
+    if(value === "Hamburguesas"){
+      this.setState({collapsibleLD: 0})
+    }else if(value === "Acompañamientos") {
+      this.setState({collapsibleLD: 1})
+    } else if(value === "Bebidas"){
+      this.setState({collapsibleLD: 2})
+    }
+  }
 }
 
 export default TakeOrder;
