@@ -10,8 +10,10 @@ class TakeOrder extends Component {
       orders: [],
       totalOrders: [],
       newOrders: [],
-      activeTab: '',
-      nameActiveTap: ''
+      tabBreakfast: true,
+      tabLunch: false,
+      collapsibleB: '',
+      collapsibleLD: '',
     }
   }
 
@@ -25,12 +27,10 @@ class TakeOrder extends Component {
           </button>
         </div>
         <Container className="col s8">
-          <div onClick={this.activeTab.bind(this)}>
-            <Tabs className='tab-demo z-depth-1'>
-              <Tab title="Breakfast" className="col s6" active> <Breakfast takingOrder={this.takingOrder.bind(this)} /> </Tab>
-              <Tab title="Lunch / Dinner" className="col s6"> <LunchDinner takingOrder={this.takingOrder.bind(this)} /> </Tab>
-            </Tabs>
-          </div>
+          <Tabs className='tab-demo z-depth-1' onChange={this.handleTabChange.bind(this)}>
+            <Tab title="Breakfast" className="col s6" active={this.state.tabBreakfast}> <Breakfast takingOrder={this.takingOrder.bind(this)} collapsibleB={this.state.collapsibleB} handleCollapsibleClickB={this.handleCollapsibleClickB.bind(this)}/> </Tab>
+            <Tab title="Lunch / Dinner" className="col s6" active={this.state.tabLunch}> <LunchDinner takingOrder={this.takingOrder.bind(this)} collapsibleLD={this.state.collapsibleLD} handleCollapsibleClickLD={this.handleCollapsibleClickLD.bind(this)}/> </Tab>
+          </Tabs>
         </Container>
         <Container className="col s4">
           <h5>Pedido</h5>
@@ -40,15 +40,6 @@ class TakeOrder extends Component {
         </Container>
       </div>
     );
-  }
-
-  activeTab(e) {
-    if (e.target.tagName === "A") {
-      // this.setState({activeTab: e.target.className})
-      console.log(e.target.href)
-      console.log(e.target.className)
-    }
-    // return ((value === this.state.clicked) ? 'active' : '');
   }
 
   showOrder() {
@@ -113,6 +104,33 @@ class TakeOrder extends Component {
 
   saveLocal() {
     this.props.saveLocal(this.state.orders);
+  }
+
+  handleTabChange(e) {
+    const sliceEvent = e.slice(-1)
+    if(sliceEvent === '0'){
+      this.setState({tabBreakfast: true, tabLunch: false})
+    }else {
+      this.setState({tabBreakfast: false, tabLunch: true})
+    }
+  }
+
+  handleCollapsibleClickB(value){
+    if(value === "Sandwiches"){
+      this.setState({collapsibleB: 0})
+    }else if(value === "Bebidas") {
+      this.setState({collapsibleB: 1})
+    }
+  }
+
+  handleCollapsibleClickLD(value){
+    if(value === "Hamburguesas"){
+      this.setState({collapsibleLD: 0})
+    }else if(value === "Acompañamientos") {
+      this.setState({collapsibleLD: 1})
+    } else if(value === "Bebidas"){
+      this.setState({collapsibleLD: 2})
+    }
   }
 }
 

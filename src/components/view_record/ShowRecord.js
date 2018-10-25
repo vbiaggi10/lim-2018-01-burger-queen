@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Col, Card, Table } from 'react-materialize';
 
 class ViewOrders extends Component {
   constructor() {

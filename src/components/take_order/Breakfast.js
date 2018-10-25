@@ -4,13 +4,15 @@ import data from '../../data/menu.json';
 
 class Breakfast extends Component {
   render() {
+    console.log(this.props.collapsible)
+
     return (
       <div className="row">
-        <Collapsible popout accordion>
-          <CollapsibleItem header="Sandwiches">
+        <Collapsible popout accordion defaultActiveKey={this.props.collapsibleB}>
+          <CollapsibleItem header="Sandwiches" onClick={this.handleCollapsibleClickB.bind(this)}>
             {this.handleShowItems("Sandwiches")}
           </CollapsibleItem>
-          <CollapsibleItem header="Bebidas">
+          <CollapsibleItem header="Bebidas" onClick={this.handleCollapsibleClickB.bind(this)}>
             {this.handleShowItems("Bebidas")}
           </CollapsibleItem>
         </Collapsible>
@@ -42,6 +44,10 @@ class Breakfast extends Component {
     e.preventDefault();
     const newTarget = e.target.name.split('/');
     this.props.takingOrder(newTarget[0], newTarget[1])
+  }
+
+  handleCollapsibleClickB(e) {
+    this.props.handleCollapsibleClickB(e.target.innerHTML); 
   }
 }
 
