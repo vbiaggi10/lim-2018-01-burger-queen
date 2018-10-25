@@ -10,9 +10,9 @@ import Page404 from "./components/page_404/Page404";
 const AppRoutes = () => (
   <App>
     <Switch>
-      <Route exact path="/" component={TakeName} />
-      <Route exact path="/pedidos/" component={ViewOrders} />
-      <Route exact path="/historial/" component={ViewRecord} />
+      <Route exact path="/lim-2018-01-burger-queen/" component={TakeName} />
+      <Route exact path="/lim-2018-01-burger-queen/pedidos/" component={ViewOrders} />
+      <Route exact path="/lim-2018-01-burger-queen/historial/" component={ViewRecord} />
       <Route component={Page404} />
     </Switch>
   </App>
