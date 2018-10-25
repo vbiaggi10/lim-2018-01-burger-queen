@@ -38,14 +38,14 @@ class ViewOrders extends Component {
         <Col m={6} s={12}>
           <h5>En proceso</h5>
           {this.state.orders.map((element, i) => {
-            if (!element.status) return (<ShowOrder key={`false-${i}`} id={element.id} name={element.name} order={element.order} status={element.status} date={element.date} hour={element.hour} handleChangeStatus={this.handleChangeStatus.bind(this)} />)
+            if (!element.status) return (<ShowOrder key={`falseO-${i}`} id={element.id} name={element.name} order={element.order} status={element.status} date={element.date} hour={element.hour} handleChangeStatus={this.handleChangeStatus.bind(this)} />)
             return true;
           })}
         </Col>
         <Col m={6} s={12}>
           <h5>Terminado</h5>
           {this.state.orders.map((element, i) => {
-            if (element.status) return (<ShowOrder key={`true-${i}`} id={element.id} name={element.name} order={element.order} status={element.status} date={element.date} hour={element.hour} handleChangeStatus={this.handleChangeStatus.bind(this)} />)
+            if (element.status) return (<ShowOrder key={`trueO-${i}`} id={element.id} name={element.name} order={element.order} status={element.status} date={element.date} hour={element.hour} handleChangeStatus={this.handleChangeStatus.bind(this)} />)
             return true
           })}
         </Col>
