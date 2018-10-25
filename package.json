@@ -51,7 +51,7 @@
     "not op_mini all"
   ],
   "description": "Nos acaban de enviar un correo con una solicitud para un nuevo proyecto. Hay un\r restaurante que nos ha contactado porque quieren que alguien les construya una\r interfaz donde puedan tomar pedidos usando una tablet.",
-  "main": "webpack.config.js",
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vbiaggi10/lim-2018-01-burger-queen.git"
