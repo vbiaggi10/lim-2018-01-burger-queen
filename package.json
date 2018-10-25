@@ -4,7 +4,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "jquery": "^3.3.1",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-materialize": "^2.4.6",
@@ -13,15 +17,34 @@
     "source-map-explorer": "^1.6.0"
   },
   "devDependencies": {
-    "gh-pages": "^2.0.1"
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.0",
+    "gh-pages": "^2.0.1",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "react-hot-loader": "^4.3.6",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.23.0",
+    "webpack-bundle-tracker": "^0.3.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "webpack-dev-server --open --mode development",
+    "build": "webpack",
+    "dev-server": "webpack-dev-server",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "npm run build && gh-pages -d build",
-    "analyze": "source-map-explorer build/static/js/main.*"
+    "publish-demo": "npm run build && npm run deploy",
+    "analyze": "source-map-explorer build/static/js/main.*",
+    "transpile": "babel src -d dist --copy-files"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -31,5 +54,20 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "description": "Nos acaban de enviar un correo con una solicitud para un nuevo proyecto. Hay un\r restaurante que nos ha contactado porque quieren que alguien les construya una\r interfaz donde puedan tomar pedidos usando una tablet.",
+  "main": "webpack.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vbiaggi10/lim-2018-01-burger-queen.git"
+  },
+  "keywords": [
+    "Plataforma",
+    "web"
+  ],
+  "author": "Valeria Biaggi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vbiaggi10/lim-2018-01-burger-queen/issues"
+  }
 }
