@@ -27,7 +27,7 @@ class TakeOrder extends Component {
           </button>
         </div>
         <Container className="col s8">
-          <Tabs className='tab-demo z-depth-1' onChange={this.handleTabChange}>
+          <Tabs className='tab-demo z-depth-1' onChange={this.handleTabChange.bind(this)}>
             <Tab title="Breakfast" className="col s6" active={this.state.tabBreakfast}> <Breakfast takingOrder={this.takingOrder.bind(this)} collapsibleB={this.state.collapsibleB} handleCollapsibleClickB={this.handleCollapsibleClickB.bind(this)}/> </Tab>
             <Tab title="Lunch / Dinner" className="col s6" active={this.state.tabLunch}> <LunchDinner takingOrder={this.takingOrder.bind(this)} collapsibleLD={this.state.collapsibleLD} handleCollapsibleClickLD={this.handleCollapsibleClickLD.bind(this)}/> </Tab>
           </Tabs>
@@ -106,7 +106,7 @@ class TakeOrder extends Component {
     this.props.saveLocal(this.state.orders);
   }
 
-  handleTabChange = (e) =>{
+  handleTabChange(e) {
     const sliceEvent = e.slice(-1)
     if(sliceEvent === '0'){
       this.setState({tabBreakfast: true, tabLunch: false})

@@ -11,10 +11,10 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/lim-2018-01-burger-queen/precache-manifest.b1aab296bccb9f25cc11eace7843ab75.js"
+  "/lim-2018-01-burger-queen/precache-manifest.e2d2d9dda967a609c1d749f4a3a00955.js"
 );
 
 workbox.clientsClaim();
