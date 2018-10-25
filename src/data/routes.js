@@ -1,13 +1,13 @@
 export default [{
     title: "Inicio",
-    url: "/lim-2018-01-burger-queen/"
+    url: "/"
   },
   {
     title: "Pedidos",
-    url: "/lim-2018-01-burger-queen/pedidos/"
+    url: "/pedidos/"
   },
   {
     title: "Historial",
-    url: "/lim-2018-01-burger-queen/historial/"
+    url: "/historial/"
   }
 ];
